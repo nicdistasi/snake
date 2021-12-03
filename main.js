@@ -114,7 +114,7 @@ setInterval(function() { //timer
 
 
     //console.log(Math.floor(delta / 1000));//in seconds
-}, 500); // update about every second
+}, 1000/15); // currently 15 fps
 
 function newClone(num) {
     var parent = document.getElementById("gameBoard");
