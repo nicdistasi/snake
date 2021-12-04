@@ -2,6 +2,8 @@ var gameProperties = {
     started: false,
     width: 20,
     height: 20,
+    score: 0,
+    highScore: 0,
     gameOver: false,
     closedPositions: []
 }
@@ -39,9 +41,10 @@ setInterval(function() { //timer
     //food eaten
     if ((snake.row == food.row) && (snake.col == food.col)) {
         snake.length++;
+        gameProperties.score++;
         newClone(snake.length - 1);
 
-        scoreElem.innerHTML = "Current: " + (snake.length - 1);
+        scoreElem.innerHTML = "Current: " + (gameProperties.score);
 
         var col = Math.floor(Math.random() * 9) + 1;
         var row = Math.floor(Math.random() * 9) + 1;
@@ -114,7 +117,7 @@ setInterval(function() { //timer
 
 
     //console.log(Math.floor(delta / 1000));//in seconds
-}, 1000/15); // currently 15 fps
+}, 1000/5); // currently 15 fps
 
 function newClone(num) {
     var parent = document.getElementById("gameBoard");
@@ -136,7 +139,9 @@ function newClone(num) {
 function reset() {
     gameProperties.started = false;
 
-    highScoreElem.innerHTML = "High: " + (snake.length - 1);
+    if (gameProperties.score > gameProperties.highScore) {
+        highScoreElem.innerHTML = "High: " + (gameProperties.score);
+    }
     scoreElem.innerHTML = "Current: 0";
 
     snake.col = 10, snake.row = 10;
