@@ -140,8 +140,10 @@ function reset() {
     gameProperties.started = false;
 
     if (gameProperties.score > gameProperties.highScore) {
+        gameProperties.highScore = gameProperties.score;
         highScoreElem.innerHTML = "High: " + (gameProperties.score);
     }
+    gameProperties.score = 0;
     scoreElem.innerHTML = "Current: 0";
 
     snake.col = 10, snake.row = 10;
